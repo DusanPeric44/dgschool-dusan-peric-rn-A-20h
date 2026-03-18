@@ -23,11 +23,23 @@ const BottomTabNavigator = () => {
         component={MainStackNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" size={24} color="black" />
+            <MaterialCommunityIcons name="home" size={26} color={color} />
           ),
         }}
       />
-      <Tab.Screen name="About" component={AboutStackNavigator} />
+      <Tab.Screen
+        name="About"
+        component={AboutStackNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="video-stabilization"
+              size={26}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
