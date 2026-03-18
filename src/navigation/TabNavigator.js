@@ -16,6 +16,7 @@ const BottomTabNavigator = () => {
         tabBarLabelStyle: {
           fontSize: 12,
         },
+        headerShown: false,
       }}
     >
       <Tab.Screen
