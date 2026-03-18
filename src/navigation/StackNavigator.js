@@ -10,13 +10,19 @@ const stackNavigatorStyle = {
     backgroundColor: "#ff6347",
   },
   headerTintColor: "white",
+  headerShown: false,
 };
 
 const MainStackNavigator = ({ navigation }) => (
   <Stack.Navigator screenOptions={stackNavigatorStyle}>
     <Stack.Screen name="Home" component={Home} />
+  </Stack.Navigator>
+);
+
+const AboutStackNavigator = ({ navigation }) => (
+  <Stack.Navigator screenOptions={stackNavigatorStyle}>
     <Stack.Screen name="About" component={About} />
   </Stack.Navigator>
 );
 
-export default MainStackNavigator;
+export { MainStackNavigator, AboutStackNavigator };
