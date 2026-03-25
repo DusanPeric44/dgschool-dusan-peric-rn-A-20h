@@ -1,54 +1,95 @@
 import React from "react";
-import { Text, View, StyleSheet, Button, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Image,
+  FlatList,
+  ScrollView,
+} from "react-native";
 import Swiper from "react-native-swiper";
 import Icon from "../components/Icon";
+import data from "../data/products.json";
+import Item from "../components/Item";
 
-const Home = ({ navigation }) => (
-  <View style={styles.container}>
-    <View style={styles.sliderContainer}>
-      <Swiper
-        autoplay
-        autoplayTimeout={5}
-        activeDotColor="#22D4FF"
-        showsButtons={true}
-      >
-        <View style={styles.item}>
-          <Image
-            source={require("../../assets/banner-1.jpg")}
-            style={styles.imgItem}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={styles.item}>
-          <Image
-            source={require("../../assets/banner-2.jpg")}
-            style={styles.imgItem}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={styles.item}>
-          <Image
-            source={require("../../assets/banner-3.jpg")}
-            style={styles.imgItem}
-            resizeMode="cover"
-          />
-        </View>
-      </Swiper>
-    </View>
+class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+    };
+  }
 
-    <View style={styles.iconsContainer}>
-      <Icon name="cellphone" iconText="iPhone" />
-      <Icon name="android" iconText="Android" />
-      <Icon name="laptop" iconText="Laptop" />
-    </View>
+  componentDidMount() {
+    this.setState({
+      products: data,
+    });
+  }
 
-    <View style={styles.iconsContainer}>
-      <Icon name="tablet" iconText="Tablet" />
-      <Icon name="mouse" iconText="Mouse" />
-      <Icon name="keyboard" iconText="Keyboard" />
-    </View>
-  </View>
-);
+  render() {
+    return (
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.sliderContainer}>
+            <Swiper
+              autoplay
+              autoplayTimeout={5}
+              activeDotColor="#22D4FF"
+              showsButtons={true}
+            >
+              <View style={styles.item}>
+                <Image
+                  source={require("../../assets/banner-1.jpg")}
+                  style={styles.imgItem}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.item}>
+                <Image
+                  source={require("../../assets/banner-2.jpg")}
+                  style={styles.imgItem}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={styles.item}>
+                <Image
+                  source={require("../../assets/banner-3.jpg")}
+                  style={styles.imgItem}
+                  resizeMode="cover"
+                />
+              </View>
+            </Swiper>
+          </View>
+
+          <View style={styles.iconsContainer}>
+            <Icon name="cellphone" iconText="iPhone" />
+            <Icon name="android" iconText="Android" />
+            <Icon name="laptop" iconText="Laptop" />
+          </View>
+
+          <View style={styles.iconsContainer}>
+            <Icon name="tablet" iconText="Tablet" />
+            <Icon name="mouse" iconText="Mouse" />
+            <Icon name="keyboard" iconText="Keyboard" />
+          </View>
+
+          <View style={styles.productsContainer}>
+            <Text style={styles.title}>Most popular products</Text>
+            <FlatList
+              data={this.state.products.popularproducts}
+              renderItem={({ item }) => (
+                <View>
+                  <Item item={item} />
+                </View>
+              )}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -82,6 +123,17 @@ const styles = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
     marginTop: 30,
+  },
+
+  productsContainer: {
+    marginHorizontal: 20,
+  },
+
+  title: {
+    marginTop: 35,
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 16,
   },
 });
 
