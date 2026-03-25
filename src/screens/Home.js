@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, Button, Image } from "react-native";
 import Swiper from "react-native-swiper";
+import Icon from "../components/Icon";
 
 const Home = ({ navigation }) => (
   <View style={styles.container}>
@@ -10,9 +11,6 @@ const Home = ({ navigation }) => (
         autoplayTimeout={5}
         activeDotColor="#22D4FF"
         showsButtons={true}
-        onIndexChanged={(index) => {
-          console.log("Promijenio se indeks na ", index);
-        }}
       >
         <View style={styles.item}>
           <Image
@@ -36,6 +34,18 @@ const Home = ({ navigation }) => (
           />
         </View>
       </Swiper>
+    </View>
+
+    <View style={styles.iconsContainer}>
+      <Icon name="cellphone" iconText="iPhone" />
+      <Icon name="android" iconText="Android" />
+      <Icon name="laptop" iconText="Laptop" />
+    </View>
+
+    <View style={styles.iconsContainer}>
+      <Icon name="tablet" iconText="Tablet" />
+      <Icon name="mouse" iconText="Mouse" />
+      <Icon name="keyboard" iconText="Keyboard" />
     </View>
   </View>
 );
@@ -64,6 +74,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 8,
+  },
+
+  iconsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "90%",
+    alignSelf: "center",
+    marginTop: 30,
   },
 });
 
